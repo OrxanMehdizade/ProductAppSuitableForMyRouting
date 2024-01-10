@@ -36,6 +36,7 @@ namespace ProductAppSuitableForMyRouting.Controllers
             ViewData["Categorys"] = category;
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Add(ProductAddViewModel model)
         {
@@ -126,6 +127,7 @@ namespace ProductAppSuitableForMyRouting.Controllers
             var categories = _context.Categorys.ToList();
             return View(categories);
         }
+
 
 
 

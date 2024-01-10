@@ -1,7 +1,7 @@
 ﻿@model ProductAddViewModel
 
 @{
-    var categorys = ViewData["Categorys"] as List<Category>;
+    var categorys = ViewData["Categorys"] as List<Category> ?? new List<Category>();
 }
 
 <style>
@@ -11,6 +11,11 @@
         padding: 30px;
     }
 
+    .btnAddDiv::placeholder {
+        width: 100%;
+        text-align: center;
+        padding: 30px;
+    }
 </style>
 
 <h1>Add</h1>
@@ -31,8 +36,7 @@
     <div class="form-group">
         <label asp-for="CategoryId">Select Category:</label>
         <select asp-for="CategoryId" class="form-control" asp-items="new SelectList(categorys, nameof(Category.Id), nameof(Category.Name))">
-
-            <option value=""> Product Category types </option>
+            <option value="">Product Category types</option>
         </select>
     </div>
 
@@ -47,7 +51,6 @@
         <input asp-for="ImageUrl" type="file" class="form-control" />
         <span asp-validation-for="ImageUrl" class="text-danger"></span>
     </div>
-
 
     <div class="btnAddDiv">
         <button type="submit" class="btn btn-primary">Add Product</button>

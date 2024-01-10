@@ -1,5 +1,7 @@
 ﻿@model List<Product>
 
+@using System.IO
+
 
 <style>
     .btnGetAllDiv {
@@ -16,8 +18,9 @@
     <div class="d-flex gap-2">
         @foreach (var item in Model)
         {
+
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="@Url.Content("~/Images\\"+@item.ImageUrl)" alt="image not available">
+                <img class="card-img-top" src="@Url.Content($"~/Images/{System.IO.Path.GetFileName(item.ImageUrl)}")" alt="Image Description" />
                 <div class="card-body">
                     <h5 class="card-title">@item.Title</h5>
                     <p class="card-text">@item.Description</p>

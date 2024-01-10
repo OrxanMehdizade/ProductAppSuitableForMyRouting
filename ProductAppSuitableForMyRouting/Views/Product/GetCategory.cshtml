@@ -43,7 +43,7 @@
     @foreach (var item in Model)
     {
         <div class="card" id="Category-main-div">
-            <img class="card-img-top" src="@item.ImageUrl" alt="image not available">
+            <img class="card-img-top" src="@item.ImageUrlCategory" alt="image not available">
             <p class="card-text" onclick="location.href='@Url.Action("GetAll", "Product", new { categoryId = item.Id })'">@item.Name</p>
         </div>
     }
