@@ -6,6 +6,6 @@
         public string Description { get; set; } = null!;
         public int CategoryId { get; set; }
         public decimal Price { get; set; }
-        public string? ImageUrl { get; set; }
+        public IFormFile ImageUrl { get; set; }
     }
 }

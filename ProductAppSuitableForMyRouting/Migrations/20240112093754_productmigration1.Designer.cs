@@ -12,8 +12,8 @@ using ProductAppSuitableForMyRouting.Data;
 namespace ProductAppSuitableForMyRouting.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240110153459_mig10")]
-    partial class mig10
+    [Migration("20240112093754_productmigration1")]
+    partial class productmigration1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,7 +36,7 @@ namespace ProductAppSuitableForMyRouting.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ImageUrl")
+                    b.Property<string>("ImageUrlCategory")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedTime")

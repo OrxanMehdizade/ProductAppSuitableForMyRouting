@@ -42,16 +42,8 @@ namespace ProductAppSuitableForMyRouting.Controllers
         {
             if (ModelState.IsValid)
             {
-                Product products = new()
-                {
-                    ImageUrl = await UploadFileHelper.UploadFile(model.ImageUrl),
-                    Title = model.Title,
-                    Description = model.Description,
-                    CategoryId = model.CategoryId,
-                    Price = model.Price,
-                };
-
-                _context.Products.Add(products);
+                Product product = await Product.ProductViewModelAsync(model);
+                _context.Products.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("GetAll");
 
@@ -83,12 +75,13 @@ namespace ProductAppSuitableForMyRouting.Controllers
                 return NotFound();
             }
 
-            var viewModel = new ProductUpdateViewModel
+            ProductUpdateViewModel viewModel = new ()
             {
+                ImageUrl = null,
                 Title = product.Title,
                 Description = product.Description,
                 Price = product.Price,
-                ImageUrl = product.ImageUrl
+                
             };
 
             return View(viewModel);
@@ -113,7 +106,7 @@ namespace ProductAppSuitableForMyRouting.Controllers
             product.Title = model.Title;
             product.Description = model.Description;
             product.Price = model.Price;
-            product.ImageUrl = model.ImageUrl;
+            product.ImageUrl = await UploadFileHelper.UploadFile(model.ImageUrl);
 
             await _context.SaveChangesAsync();
 
@@ -129,6 +122,27 @@ namespace ProductAppSuitableForMyRouting.Controllers
         }
 
 
+
+        [HttpGet]
+        public IActionResult AddCategory()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddCategory(AddCategoryViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Category category = await Category.CategoryViewModelAsync(model);
+                _context.Categorys.Add(category);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("GetCategory");
+
+
+            }
+            return View(model);
+        }
 
 
 

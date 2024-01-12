@@ -43,9 +43,12 @@
     @foreach (var item in Model)
     {
         <div class="card" id="Category-main-div">
-            <img class="card-img-top" src="@item.ImageUrlCategory" alt="image not available">
+            <img class="card-img-top" src="@Url.Content($"~/Images/{System.IO.Path.GetFileName(item.ImageUrlCategory)}")" alt="Image Description" />
             <p class="card-text" onclick="location.href='@Url.Action("GetAll", "Product", new { categoryId = item.Id })'">@item.Name</p>
         </div>
     }
 </div>
-<div class="btnAddDiv"><a asp-controller="Product" asp-action="Add" id="btnAdd" class="btn btn-primary">Add</a></div>
+<div class="btnAddDiv">
+    <a asp-controller="Product" asp-action="Add" id="btnAdd" class="btn btn-primary">Add</a>
+    <a asp-controller="Product" asp-action="AddCategory" id="btnAdd" class="btn btn-primary">Add Category</a>
+</div> 
