@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductAppSuitableForMyRouting.Data;
 using ProductAppSuitableForMyRouting.Helpers;
@@ -11,10 +12,11 @@ namespace ProductAppSuitableForMyRouting.Controllers
     public class ProductController : Controller
     {
         private readonly AppDbContext _context;
-
-        public ProductController(AppDbContext context)
+        private readonly IMapper _automapper;
+        public ProductController(AppDbContext context,IMapper mapper)
         {
             _context = context;
+            _automapper = mapper;
         }
 
         public IActionResult GetAll(int? categoryId)
@@ -42,7 +44,7 @@ namespace ProductAppSuitableForMyRouting.Controllers
         {
             if (ModelState.IsValid)
             {
-                Product product = await Product.ProductViewModelAsync(model);
+                var product = _automapper.Map<Product>(model);
                 _context.Products.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("GetAll");
@@ -114,35 +116,6 @@ namespace ProductAppSuitableForMyRouting.Controllers
 
         }
 
-        [HttpGet]
-        public IActionResult GetCategory()
-        {
-            var categories = _context.Categorys.ToList();
-            return View(categories);
-        }
-
-
-
-        [HttpGet]
-        public IActionResult AddCategory()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> AddCategory(AddCategoryViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                Category category = await Category.CategoryViewModelAsync(model);
-                _context.Categorys.Add(category);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("GetCategory");
-
-
-            }
-            return View(model);
-        }
 
 
 

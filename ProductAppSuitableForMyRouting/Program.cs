@@ -10,6 +10,7 @@ builder.Services.AddDbContext<AppDbContext>(op => op.UseSqlServer(builder.Config
 
 builder.Services.AddFluentValidation(p => p.RegisterValidatorsFromAssemblyContaining<Program>());
 
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 var app = builder.Build();
 
@@ -30,6 +31,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Product}/{action=GetCategory}/{id?}");
+    pattern: "{controller=Category}/{action=GetCategory}/{id?}");
 
 app.Run();

@@ -18,7 +18,7 @@
 
 <h1>Add Category</h1>
 
-<form asp-controller="Product" asp-action="AddCategory" enctype="multipart/form-data" method="post">
+<form asp-controller="Category" asp-action="AddCategory" enctype="multipart/form-data" method="post">
     <div class="form-group">
         <label asp-for="Name"></label>
         <input asp-for="Name" class="form-control" />
@@ -32,7 +32,7 @@
 
 
     <div class="btnAddDiv">
-        <button type="submit" class="btn btn-primary">Add Category</button>
-        <a class="btn btn-primary" asp-area="" asp-controller="Product" asp-action="GetCategory">Exit</a>
+        <button type="submit" class="btn btn-success">Add Category</button>
+        <a class="btn btn-primary" asp-area="" asp-controller="Category" asp-action="GetCategory">Exit</a>
     </div>
 </form>

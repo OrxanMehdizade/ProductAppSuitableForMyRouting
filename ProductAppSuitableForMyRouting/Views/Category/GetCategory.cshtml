@@ -18,7 +18,7 @@
         text-align: center;
         margin: 10px auto;
         width: 10em;
-        font-family:cursive;
+        font-family: cursive;
     }
 
         .card-text:hover {
@@ -45,14 +45,16 @@
     <div class="d-flex  gap-2">
         @foreach (var item in Model)
         {
-            <div class="card" id="Category-main-div" >
+            <div class="card" id="Category-main-div">
                 <img class="card-img-top" src="@Url.Content($"~/Images/{System.IO.Path.GetFileName(item.ImageUrlCategory)}")" alt="Image Description" />
                 <p class="card-text" onclick="location.href='@Url.Action("GetAll", "Product", new { categoryId = item.Id })'">@item.Name</p>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger" style="margin:20px ">Delete</a>
+                <a asp-controller="Category" asp-action="Update" asp-route-id="@item.Id" class="btn btn-warning">Update</a>
             </div>
         }
     </div>
     <div class="btnAddDiv">
-        <a asp-controller="Product" asp-action="Add" id="btnAdd" class="btn btn-primary">Add</a>
-        <a asp-controller="Product" asp-action="AddCategory" id="btnAdd" class="btn btn-primary">Add Category</a>
+        <a asp-controller="Product" asp-action="Add" id="btnAdd" class="btn btn-success">Add Product</a>
+        <a asp-controller="Category" asp-action="AddCategory" id="btnAdd" class="btn btn-success">Add Category</a>
     </div>
 </div>

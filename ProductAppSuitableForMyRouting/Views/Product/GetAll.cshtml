@@ -27,7 +27,7 @@
                     <p class="card-text">@item.Category.Name</p>
                     <p class="card-text">@item.Price $</p>
                     <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
-                    <a asp-controller="Product" asp-action="Update" asp-route-id="@item.Id" class="btn btn-danger">Update</a>
+                    <a asp-controller="Product" asp-action="Update" asp-route-id="@item.Id" class="btn btn-warning">Update</a>
                 </div>
 
             </div>
@@ -36,7 +36,7 @@
 
 
     </div>
-    <div class="btnGetAllDiv"><a class="btn btn-primary" asp-area="" asp-controller="Product" asp-action="GetCategory">Exit</a></div>
+    <div class="btnGetAllDiv"><a class="btn btn-primary" asp-area="" asp-controller="Category" asp-action="GetCategory">Exit</a></div>
 
 }
 else
